@@ -1,7 +1,8 @@
-package com.ludwig
+package com.ludwig.presentation.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ludwig.R
 
 class MainActivity : AppCompatActivity() {
 
