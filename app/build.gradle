@@ -4,6 +4,18 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlin-allopen'
+
+apply plugin: 'jacoco'
+
+apply plugin: 'com.github.kt3k.coveralls'
+
+jacoco {
+    version = '0.8.1'
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -23,12 +35,61 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    implementation 'androidx.core:core-ktx:1.2.0-alpha01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    // Android support
+    implementation deps.support.appcompat
+    implementation deps.support.design
+    implementation deps.support.constraintlayout
+
+    // Testing
+    testImplementation deps.testing.junit
+    testImplementation deps.testing.mockito_core
+    testImplementation deps.testing.mockito_kotlin
+    androidTestImplementation deps.testing.mockito_android
+    androidTestImplementation deps.testing.mockito_kotlin
+    androidTestImplementation deps.testing.test_runner
+    androidTestImplementation deps.testing.espresso_core
+    androidTestImplementation deps.testing.espresso_intents
+
+    // Multidex
+    implementation deps.android.multidex
+
+    // Kotlin
+    implementation deps.kotlin.stdlib
+
+    // Life cycle
+    implementation deps.lifecycle.extensions
+    kapt deps.lifecycle.compiler
+    testImplementation deps.arch_core.testing
+    androidTestImplementation deps.arch_core.testing
+
+    // Room
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    kapt deps.room.compiler
+
+    // Dagger2
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.compiler
+    kapt deps.dagger.android_processor
+
+    // OkHttp and Retrofit
+    implementation deps.okhttp.runtime
+    implementation deps.okhttp.logging
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.rxjava2
+    implementation deps.retrofit.gson
+
+    // RxJava and RxAndroid
+    implementation deps.reactivex.rxjava2
+    implementation deps.reactivex.rxandroid
+
+    // Stetho for network debugging
+    implementation deps.stetho.runtime
+    implementation deps.stetho.okhttp
+
+    // Glide
+    implementation deps.glide.runtime
+    annotationProcessor deps.glide.compiler
 }
