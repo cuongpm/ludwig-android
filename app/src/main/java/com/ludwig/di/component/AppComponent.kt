@@ -1,8 +1,7 @@
 package com.ludwig.di.component
 
 import com.ludwig.LudwigApplication
-import com.ludwig.di.module.ActivityBindingModule
-import com.ludwig.di.module.AppModule
+import com.ludwig.di.module.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -17,8 +16,11 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
+        ActivityBindingModule::class,
         AppModule::class,
-        ActivityBindingModule::class
+        NetworkModule::class,
+        ViewModelModule::class,
+        RepositoryModule::class
     ]
 )
 interface AppComponent : AndroidInjector<LudwigApplication> {

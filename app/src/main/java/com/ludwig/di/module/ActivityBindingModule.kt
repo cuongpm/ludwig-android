@@ -1,6 +1,7 @@
 package com.ludwig.di.module
 
 import com.ludwig.di.ActivityScoped
+import com.ludwig.di.module.activity.MainActivityModule
 import com.ludwig.presentation.home.MainActivity
 import com.ludwig.presentation.splash.SplashActivity
 import dagger.Module
@@ -14,7 +15,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityBindingModule {
 
     @ActivityScoped
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [MainActivityModule::class])
     abstract fun bindMainActivity(): MainActivity
 
     @ActivityScoped
