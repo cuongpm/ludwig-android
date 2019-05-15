@@ -39,8 +39,8 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun handleDataState() {
-        homeViewModel.dataState.observe(this, Observer { data ->
-            tv_content.text = data
+        homeViewModel.dataState.observe(this, Observer { searchResult ->
+            tv_content.text = searchResult.result.joinToString("\n\n")
         })
     }
 }

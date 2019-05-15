@@ -23,7 +23,7 @@ import javax.inject.Singleton
 class NetworkModule {
 
     companion object {
-        private const val LUDWIG_URL = "https://ludwig.guru/"
+        private const val LUDWIG_URL = "https://generaldata-79d9b.firebaseapp.com/api/"
     }
 
     private fun buildOkHttpClient(application: Application): OkHttpClient =

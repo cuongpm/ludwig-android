@@ -1,5 +1,6 @@
 package com.ludwig.data.repository
 
+import com.ludwig.data.entities.SearchResult
 import com.ludwig.data.remote.RemoteDataSource
 import io.reactivex.Single
 import javax.inject.Inject
@@ -9,14 +10,14 @@ import javax.inject.Inject
  */
 
 interface LudwigRepository {
-    fun getSentences(keyword: String): Single<String>
+    fun getSentences(keyword: String): Single<SearchResult>
 }
 
 class LudwigRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : LudwigRepository {
 
-    override fun getSentences(keyword: String): Single<String> {
+    override fun getSentences(keyword: String): Single<SearchResult> {
         return remoteDataSource.getSentences(keyword)
     }
 }
