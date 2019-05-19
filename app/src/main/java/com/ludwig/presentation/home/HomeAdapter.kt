@@ -1,5 +1,6 @@
 package com.ludwig.presentation.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,14 +8,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ludwig.R
 import com.ludwig.data.entities.SentenceEntity
+import com.ludwig.util.StringUtil
 
 /**
  * Created by cuongpm on 2019-05-19.
  */
 
-class HomeAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeAdapter(
+    private val context: Context
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val sentences: MutableList<SentenceEntity> = mutableListOf()
+
+    private var keyword: String = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return HomeViewHolder(
@@ -30,7 +36,8 @@ class HomeAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun setData(listSentences: List<SentenceEntity>) {
+    fun setData(listSentences: List<SentenceEntity>, keyword: String) {
+        this.keyword = keyword
         sentences.clear()
         sentences.addAll(listSentences)
         notifyDataSetChanged()
@@ -46,7 +53,13 @@ class HomeAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             sentence.let {
                 tvNumber.text = "$position"
                 tvAuthor.text = it.source
-                tvSentence.text = it.content
+                tvSentence.text =
+                    if (keyword.isEmpty()) it.content else StringUtil.highlightKeyword(
+                        context,
+                        it.content,
+                        keyword,
+                        R.color.color_blue
+                    )
             }
         }
     }

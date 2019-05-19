@@ -12,21 +12,50 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="@dimen/padding_normal">
 
             <EditText
                     android:id="@+id/et_search"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_search"/>
+                    android:layout_height="@dimen/search_bar_height"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+                    android:drawableRight="@drawable/ic_search"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
+                    android:hint="@string/search_here"
+                    android:background="@drawable/search_background"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_result"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_result"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_normal"
+                    android:padding="@dimen/padding_normal"
+                    android:background="@drawable/result_background"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/et_search"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/result_title"
+                        android:textSize="@dimen/text_medium"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/padding_normal"
+                        app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

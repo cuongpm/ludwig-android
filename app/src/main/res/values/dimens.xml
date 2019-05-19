@@ -18,4 +18,7 @@
 
     // Drawer layout
     <dimen name="menu_item_size">50dp</dimen>
+
+    // Home screen
+    <dimen name="search_bar_height">60dp</dimen>
 </resources>
