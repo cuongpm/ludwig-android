@@ -17,8 +17,9 @@
     <dimen name="text_xxxlarge">24sp</dimen>
 
     // Drawer layout
-    <dimen name="menu_item_size">50dp</dimen>
+    <dimen name="menu_header_size">80dp</dimen>
+    <dimen name="menu_item_size">60dp</dimen>
 
     // Home screen
-    <dimen name="search_bar_height">60dp</dimen>
+    <dimen name="search_bar_height">55dp</dimen>
 </resources>

@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">Ludwig</string>
     <string name="home">Home</string>
+    <string name="premium">Premium</string>
     <string name="result_title">Sentence examples for %s from inspiring English sources</string>
     <string name="search_here">Search here...</string>
+    <string name="history">History</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="business">Business</string>
+    <string name="about">About</string>
+    <string name="how_to_use_ludwig">How to use Ludwig</string>
+    <string name="blogwig">Blogwig</string>
+    <string name="press_kit">Press Kit</string>
 </resources>

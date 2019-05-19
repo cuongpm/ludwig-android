@@ -3,14 +3,230 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_gray_3">
 
-    <TextView
-            android:id="@+id/tv_home"
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/menu_item_size"
-            android:text="@string/home"
-            android:gravity="center"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/menu_header_size"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+                    android:background="@android:color/white"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                        android:id="@+id/iv_avatar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_avatar_b"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/padding_normal"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/iv_avatar"
+                        app:layout_constraintBottom_toTopOf="@id/tv_premium_account"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        android:text="minhcuong2910@gmail.com"/>
+
+                <TextView
+                        android:id="@+id/tv_premium_account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/padding_normal"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_email"
+                        app:layout_constraintStart_toEndOf="@id/iv_avatar"
+                        android:text="Premium Account"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                    android:id="@+id/divider_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/color_gray_4"
+                    app:layout_constraintTop_toBottomOf="@id/layout_profile"/>
+
+            <TextView
+                    android:id="@+id/tv_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/menu_item_size"
+                    android:text="@string/home"
+                    android:textAllCaps="true"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+                    android:drawablePadding="@dimen/padding_normal"
+                    android:drawableStart="@drawable/ic_ludwig_24"
+                    app:layout_constraintTop_toBottomOf="@id/divider_1"/>
+
+            <TextView
+                    android:id="@+id/tv_premium"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/menu_item_size"
+                    android:text="@string/premium"
+                    android:textAllCaps="true"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+                    android:drawablePadding="@dimen/padding_normal"
+                    android:drawableStart="@drawable/ic_premium"
+                    app:layout_constraintTop_toBottomOf="@id/tv_home"/>
+
+            <View
+                    android:id="@+id/divider_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_gray_4"
+                    app:layout_constraintTop_toBottomOf="@id/tv_premium"/>
+
+            <TextView
+                    android:id="@+id/tv_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/menu_item_size"
+                    android:text="@string/history"
+                    android:textAllCaps="true"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+                    android:drawablePadding="@dimen/padding_normal"
+                    android:drawableStart="@drawable/ic_history"
+                    app:layout_constraintTop_toBottomOf="@id/divider_2"/>
+
+            <TextView
+                    android:id="@+id/tv_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/menu_item_size"
+                    android:text="@string/contact_us"
+                    android:textAllCaps="true"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+                    android:drawablePadding="@dimen/padding_normal"
+                    android:drawableStart="@drawable/ic_chat"
+                    app:layout_constraintTop_toBottomOf="@id/tv_history"/>
+
+            <View
+                    android:id="@+id/divider_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_gray_4"
+                    app:layout_constraintTop_toBottomOf="@id/tv_contact"/>
+
+            <TextView
+                    android:id="@+id/tv_business"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/menu_item_size"
+                    android:text="@string/business"
+                    android:textAllCaps="true"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+                    android:drawablePadding="@dimen/padding_normal"
+                    android:drawableStart="@drawable/ic_business"
+                    app:layout_constraintTop_toBottomOf="@id/divider_3"/>
+
+            <View
+                    android:id="@+id/divider_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_gray_4"
+                    app:layout_constraintTop_toBottomOf="@id/tv_business"/>
+
+            <TextView
+                    android:id="@+id/tv_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/menu_item_size"
+                    android:text="@string/about"
+                    android:textAllCaps="true"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+                    android:drawablePadding="@dimen/padding_normal"
+                    android:drawableStart="@drawable/ic_info"
+                    app:layout_constraintTop_toBottomOf="@id/divider_4"/>
+
+            <TextView
+                    android:id="@+id/tv_how_to_use"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/menu_item_size"
+                    android:text="@string/how_to_use_ludwig"
+                    android:textAllCaps="true"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+                    android:drawablePadding="@dimen/padding_normal"
+                    android:drawableStart="@drawable/ic_help"
+                    app:layout_constraintTop_toBottomOf="@id/tv_about"/>
+
+            <View
+                    android:id="@+id/divider_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_gray_4"
+                    app:layout_constraintTop_toBottomOf="@id/tv_how_to_use"/>
+
+            <TextView
+                    android:id="@+id/tv_blog"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/menu_item_size"
+                    android:text="@string/blogwig"
+                    android:textAllCaps="true"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+                    android:drawablePadding="@dimen/padding_normal"
+                    android:drawableStart="@drawable/ic_blog"
+                    app:layout_constraintTop_toBottomOf="@id/divider_5"/>
+
+            <TextView
+                    android:id="@+id/tv_press_kit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/menu_item_size"
+                    android:text="@string/press_kit"
+                    android:textAllCaps="true"
+                    android:gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingStart="@dimen/padding_normal"
+                    android:paddingEnd="@dimen/padding_normal"
+                    android:drawablePadding="@dimen/padding_normal"
+                    android:drawableStart="@drawable/ic_attach"
+                    app:layout_constraintTop_toBottomOf="@id/tv_blog"/>
+
+            <View
+                    android:id="@+id/divider_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_gray_4"
+                    app:layout_constraintTop_toBottomOf="@id/tv_press_kit"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
