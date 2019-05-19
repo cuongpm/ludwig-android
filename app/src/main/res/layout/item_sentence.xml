@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_small">
+
+    <ImageView
+            android:id="@+id/iv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more_horiz"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+            android:id="@+id/iv_volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_volume"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="@dimen/padding_small"
+            app:layout_constraintEnd_toStartOf="@id/iv_more"/>
+
+
+    <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintTop_toBottomOf="@id/iv_more"
+            app:layout_constraintBottom_toTopOf="@id/tv_author"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="1"/>
+
+    <TextView
+            android:id="@+id/tv_sentence"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_medium"
+            android:paddingStart="@dimen/padding_small"
+            android:paddingEnd="@dimen/padding_small"
+            app:layout_constraintTop_toBottomOf="@id/iv_more"
+            app:layout_constraintBottom_toTopOf="@id/tv_author"
+            app:layout_constraintStart_toEndOf="@id/tv_number"
+            app:layout_constraintEnd_toStartOf="@id/iv_volume"
+            tools:text="Deal with it, again.fhlw;ahflshf fhldshgflash hsogosahfowheg gfhlsfhlsafh  fshlfhlsdahgfoaww9toa fshdalfhsoiahweo fhoashfoawhoi fhoaishfoahowe"/>
+
+    <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="The New York Times"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
