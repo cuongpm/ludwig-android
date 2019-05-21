@@ -28,9 +28,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
         }
     }
 }
@@ -93,4 +103,35 @@ dependencies {
     // Glide
     implementation deps.glide.runtime
     kapt deps.glide.compiler
+}
+
+tasks.coveralls {
+    dependsOn 'check'
+    onlyIf { System.getenv("COVERALLS_REPO_TOKEN") }
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+    group = 'Reporting'
+    description = 'Generate Jacoco coverage reports after running tests.'
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*',
+                      '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*',
+                      '**/Lambda$*.class', '**/Lambda.class', '**/*Lambda.class',
+                      '**/*Lambda*.class', '**/*Builder.*', '**/*_Injector.class',
+                      '**/*_Injector*.*', '**/*_*Factory*.*', '**/*Component*.*', '**/*Module*.*',
+                      '**/util/scheduler/*.*', '**/LudwigApplication.*', '**/ViewModelFactory.*']
+
+    def javaClasses = fileTree(dir: "$project.buildDir/intermediates/javac/debug", excludes: fileFilter)
+    def kotlinClasses = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+
+    sourceDirectories = files(android.sourceSets.main.java.srcDirs)
+    classDirectories = files([javaClasses, kotlinClasses])
+    executionData = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+    ])
 }

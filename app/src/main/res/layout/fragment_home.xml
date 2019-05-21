@@ -25,7 +25,7 @@
                     android:drawableRight="@drawable/ic_search"
                     android:lines="1"
                     android:singleLine="true"
-                    android:imeOptions="actionDone"
+                    android:imeOptions="actionSearch"
                     android:hint="@string/search_here"
                     android:background="@drawable/search_background"/>
 
