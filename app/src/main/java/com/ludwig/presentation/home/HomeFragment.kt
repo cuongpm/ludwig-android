@@ -5,6 +5,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -33,7 +34,8 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var homeAdapter: HomeAdapter
 
-    private var keyword: String = ""
+    @VisibleForTesting
+    internal var keyword: String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
@@ -75,9 +77,13 @@ class HomeFragment : BaseFragment() {
             // Add keyword into the result and then we can highlight it
             val result = searchResult.result.apply { forEach { it.content = String.format(it.content, keyword) } }
 
-            layout_result.visibility = View.VISIBLE
-            tv_title.text = String.format(getString(R.string.result_title), keyword)
-            homeAdapter.setData(result, keyword)
+            activity?.let {
+                it.runOnUiThread {
+                    layout_result.visibility = View.VISIBLE
+                    tv_title.text = String.format(getString(R.string.result_title), keyword)
+                    homeAdapter.setData(result, keyword)
+                }
+            }
         })
     }
 }

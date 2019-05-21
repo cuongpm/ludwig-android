@@ -7,16 +7,21 @@ import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.ludwig.R
 import com.ludwig.presentation.base.BaseActivity
+import com.ludwig.util.fragment.FragmentFactory
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
+
+    @Inject
+    lateinit var fragmentFactory: FragmentFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initUI()
 
-        replaceFragment(R.id.fragment_content, HomeFragment.newInstance())
+        replaceFragment(R.id.fragment_content, fragmentFactory.createHomeFragment())
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

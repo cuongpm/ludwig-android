@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.ludwig.data.entities.SearchResult
 import com.ludwig.data.repository.LudwigRepository
 import com.ludwig.presentation.base.BaseViewModel
+import com.ludwig.util.OpenForTesting
 import com.ludwig.util.scheduler.BaseSchedulers
 import javax.inject.Inject
 
@@ -12,6 +13,7 @@ import javax.inject.Inject
  * Created by cuongpm on 5/11/19.
  */
 
+@OpenForTesting
 class HomeViewModel @Inject constructor(
     private val ludwigRepository: LudwigRepository,
     private val baseSchedulers: BaseSchedulers

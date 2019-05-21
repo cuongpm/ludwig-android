@@ -22,4 +22,7 @@
 
     // Home screen
     <dimen name="search_bar_height">55dp</dimen>
+
+    // Common dimens
+    <dimen name="progress_bar_size">50dp</dimen>
 </resources>
