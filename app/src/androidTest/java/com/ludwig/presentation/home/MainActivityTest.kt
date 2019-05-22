@@ -56,7 +56,7 @@ class MainActivityTest {
                     isAssignableFrom(TextView::class.java),
                     withParent(isAssignableFrom(Toolbar::class.java))
                 )
-            ).check(matches(withText(R.string.home)))
+            ).check(matches(withText(R.string.app_name)))
         }
 
         fun clickHomeButton() {

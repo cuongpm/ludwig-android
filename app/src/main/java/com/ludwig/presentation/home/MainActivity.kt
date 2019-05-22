@@ -37,7 +37,7 @@ class MainActivity : BaseActivity() {
     private fun initUI() {
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
-            setHomeAsUpIndicator(R.drawable.ic_avatar_b)
+            setHomeAsUpIndicator(R.drawable.ic_avatar)
             setDisplayHomeAsUpEnabled(true)
         }
 

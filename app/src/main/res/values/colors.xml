@@ -14,4 +14,6 @@
     <color name="color_gray_4">#dbdbdb</color>
 
     <color name="color_background">#fafafa</color>
+
+    <color name="text_gray">#CBCBCB</color>
 </resources>

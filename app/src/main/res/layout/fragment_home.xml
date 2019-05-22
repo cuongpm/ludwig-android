@@ -20,14 +20,24 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/search_bar_height"
+                    android:textSize="@dimen/text_small"
                     android:paddingStart="@dimen/padding_normal"
-                    android:paddingEnd="@dimen/padding_normal"
-                    android:drawableRight="@drawable/ic_search"
+                    android:paddingEnd="@dimen/padding_search_box"
                     android:lines="1"
                     android:singleLine="true"
                     android:imeOptions="actionSearch"
                     android:hint="@string/search_here"
                     android:background="@drawable/search_background"/>
+
+            <ImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/padding_small"
+                    android:src="@drawable/ic_search"
+                    app:layout_constraintEnd_toEndOf="@id/et_search"
+                    app:layout_constraintTop_toTopOf="@id/et_search"
+                    app:layout_constraintBottom_toBottomOf="@id/et_search"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_result"
@@ -45,7 +55,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/result_title"
-                        android:textSize="@dimen/text_medium"
+                        android:textSize="@dimen/text_small"
                         app:layout_constraintTop_toTopOf="parent"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout

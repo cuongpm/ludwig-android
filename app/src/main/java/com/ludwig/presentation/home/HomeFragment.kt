@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ludwig.R
 import com.ludwig.data.entities.SearchResult
 import com.ludwig.presentation.base.BaseFragment
+import com.ludwig.util.ActivityUtil
+import com.ludwig.util.DialogUtil
 import com.ludwig.util.StringUtil
 import com.ludwig.widget.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -33,6 +36,12 @@ class HomeFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    @Inject
+    lateinit var dialogUtil: DialogUtil
+
+    @Inject
+    lateinit var activityUtil: ActivityUtil
+
     private lateinit var homeViewModel: HomeViewModel
 
     private lateinit var homeAdapter: HomeAdapter
@@ -48,6 +57,8 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
         initUI()
+        handleLoadingState()
+        handleErrorState()
         handleDataState()
     }
 
@@ -60,6 +71,13 @@ class HomeFragment : BaseFragment() {
             addItemDecoration(VerticalSpaceItemDecoration(resources.getDimensionPixelOffset(R.dimen.padding_small)))
         }
 
+        iv_search.setOnClickListener {
+            keyword = et_search.text.toString().trim()
+            if (keyword.isNotEmpty()) {
+                homeViewModel.getSentences(keyword)
+            }
+        }
+
         et_search.setOnKeyListener(object : View.OnKeyListener {
             override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
@@ -70,6 +88,26 @@ class HomeFragment : BaseFragment() {
                     return true
                 }
                 return false
+            }
+        })
+    }
+
+    private fun handleLoadingState() {
+        homeViewModel.loadingState.observe(this, Observer { isShowLoading ->
+            activity?.let {
+                if (isShowLoading) {
+                    dialogUtil.showSimpleProgressBar(it)
+                } else {
+                    dialogUtil.closeSimpleProgressBar()
+                }
+            }
+        })
+    }
+
+    private fun handleErrorState() {
+        homeViewModel.errorState.observe(this, Observer { message ->
+            activity?.let {
+                activityUtil.showToast(it, message, Toast.LENGTH_SHORT)
             }
         })
     }
@@ -94,7 +132,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun buildResultLayout(context: Context, searchResult: SearchResult) {
-        val exactResult = " 10/${searchResult.resultCount} EXACT "
+        val exactResult = " ${searchResult.result.size}/${searchResult.resultCount} EXACT "
         val similarResult = " ${searchResult.similarCount} SIMILAR "
         val relatedResult = " ${searchResult.relatedCount} RELATED "
         val allResult = "$exactResult  $similarResult  $relatedResult"

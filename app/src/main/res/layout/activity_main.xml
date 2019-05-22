@@ -17,7 +17,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 android:background="@color/colorPrimary"
-                app:title="@string/home"
+                app:title="@string/app_name"
                 app:titleTextColor="@android:color/white"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout

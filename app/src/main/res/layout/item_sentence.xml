@@ -31,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_small"
+            android:textColor="@color/text_gray"
             app:layout_constraintTop_toBottomOf="@id/iv_more"
             app:layout_constraintBottom_toTopOf="@id/tv_author"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,13 +48,14 @@
             app:layout_constraintBottom_toTopOf="@id/tv_author"
             app:layout_constraintStart_toEndOf="@id/tv_number"
             app:layout_constraintEnd_toStartOf="@id/iv_volume"
-            tools:text="Deal with it, again.fhlw;ahflshf fhldshgflash hsogosahfowheg gfhlsfhlsafh  fshlfhlsdahgfoaww9toa fshdalfhsoiahweo fhoashfoawhoi fhoaishfoahowe"/>
+            tools:text="Deal with it, again."/>
 
     <TextView
             android:id="@+id/tv_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_small"
+            android:textSize="@dimen/text_tiny"
+            android:textColor="@color/text_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="The New York Times"/>

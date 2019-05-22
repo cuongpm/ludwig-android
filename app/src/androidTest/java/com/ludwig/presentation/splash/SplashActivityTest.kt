@@ -48,6 +48,8 @@ class SplashActivityTest {
 
         fun verifySplashScreenContent() {
             onView(withId(R.id.iv_logo)).check(matches(isDisplayed()))
+            onView(withId(R.id.tv_ludwig)).check(matches(isDisplayed()))
+            onView(withId(R.id.tv_slogan)).check(matches(isDisplayed()))
         }
     }
 }

@@ -51,7 +51,7 @@ class HomeAdapter(
 
         fun bind(position: Int, sentence: SentenceEntity) {
             sentence.let {
-                tvNumber.text = "$position"
+                tvNumber.text = "${(position + 1)}"
                 tvAuthor.text = it.source
                 tvSentence.text =
                     if (keyword.isEmpty()) it.content else StringUtil.highlightKeyword(

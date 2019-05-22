@@ -3,10 +3,7 @@ package com.ludwig.di.module
 import android.app.Application
 import android.content.Context
 import com.ludwig.LudwigApplication
-import com.ludwig.util.DialogUtil
-import com.ludwig.util.DialogUtilImpl
-import com.ludwig.util.IntentUtil
-import com.ludwig.util.IntentUtilImpl
+import com.ludwig.util.*
 import com.ludwig.util.fragment.FragmentFactory
 import com.ludwig.util.fragment.FragmentFactoryImpl
 import com.ludwig.util.scheduler.BaseSchedulers
@@ -43,4 +40,8 @@ abstract class AppModule {
     @Singleton
     @Binds
     abstract fun bindDialogUtil(dialogUtil: DialogUtilImpl): DialogUtil
+
+    @Singleton
+    @Binds
+    abstract fun bindActivityUtil(activityUtil: ActivityUtilImpl): ActivityUtil
 }
