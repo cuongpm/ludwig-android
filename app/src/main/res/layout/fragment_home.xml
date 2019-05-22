@@ -48,12 +48,63 @@
                         android:textSize="@dimen/text_medium"
                         app:layout_constraintTop_toTopOf="parent"/>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_result_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_normal"
+                        android:padding="@dimen/padding_normal"
+                        android:background="@drawable/search_background"
+                        app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+                    <TextView
+                            android:id="@+id/tv_result_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_tiny"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_related"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_normal"
+                        android:padding="@dimen/padding_normal"
+                        android:background="@drawable/search_background"
+                        app:layout_constraintTop_toBottomOf="@id/layout_result_amount">
+
+                    <TextView
+                            android:id="@+id/tv_related"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_tiny"
+                            android:text="@string/related"
+                            android:textAllCaps="true"
+                            android:textColor="@color/color_pink"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                            android:id="@+id/tv_related_result"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/padding_small"
+                            android:textSize="@dimen/text_tiny"
+                            app:layout_constraintTop_toBottomOf="@id/tv_related"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_result"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/padding_normal"
-                        app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+                        app:layout_constraintTop_toBottomOf="@id/layout_related"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

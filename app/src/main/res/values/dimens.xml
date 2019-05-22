@@ -25,4 +25,5 @@
 
     // Common dimens
     <dimen name="progress_bar_size">50dp</dimen>
+    <dimen name="underline_thickness">3dp</dimen>
 </resources>

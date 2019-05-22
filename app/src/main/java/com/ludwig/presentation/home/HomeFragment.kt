@@ -1,5 +1,6 @@
 package com.ludwig.presentation.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -11,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ludwig.R
+import com.ludwig.data.entities.SearchResult
 import com.ludwig.presentation.base.BaseFragment
+import com.ludwig.util.StringUtil
 import com.ludwig.widget.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
@@ -75,15 +78,52 @@ class HomeFragment : BaseFragment() {
         homeViewModel.dataState.observe(this, Observer { searchResult ->
             // Since I haven't had real api, so I will do a little trick here.
             // Add keyword into the result and then we can highlight it
-            val result = searchResult.result.apply { forEach { it.content = String.format(it.content, keyword) } }
+            val result = searchResult.result.apply {
+                forEach {
+                    it.content = String.format(it.content, if (it.similar.isEmpty()) keyword else it.similar)
+                }
+            }
 
             activity?.let {
                 it.runOnUiThread {
-                    layout_result.visibility = View.VISIBLE
-                    tv_title.text = String.format(getString(R.string.result_title), keyword)
+                    buildResultLayout(it, searchResult)
                     homeAdapter.setData(result, keyword)
                 }
             }
         })
+    }
+
+    private fun buildResultLayout(context: Context, searchResult: SearchResult) {
+        val exactResult = " 10/${searchResult.resultCount} EXACT "
+        val similarResult = " ${searchResult.similarCount} SIMILAR "
+        val relatedResult = " ${searchResult.relatedCount} RELATED "
+        val allResult = "$exactResult  $similarResult  $relatedResult"
+        val listKeywords = listOf(exactResult, similarResult, relatedResult)
+        val listColorIds = listOf(R.color.color_blue, R.color.color_yellow, R.color.color_pink)
+        tv_result_amount.text = StringUtil.highlightMultipleKeywords(
+            context,
+            allResult,
+            listKeywords,
+            listColorIds,
+            isBold = false,
+            isUnderLine = true
+        )
+        tv_title.text = StringUtil.highlightKeyword(
+            context,
+            String.format(getString(R.string.result_title), "\"$keyword\""),
+            "\"$keyword\"",
+            0,
+            isBold = true,
+            isUnderLine = false
+        )
+        tv_related_result.text = StringUtil.highlightMultipleKeywords(
+            context,
+            searchResult.related.joinToString("  "),
+            searchResult.related,
+            listOf(R.color.color_pink),
+            isBold = false,
+            isUnderLine = true
+        )
+        layout_result.visibility = View.VISIBLE
     }
 }

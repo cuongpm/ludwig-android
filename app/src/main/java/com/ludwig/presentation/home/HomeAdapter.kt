@@ -57,8 +57,10 @@ class HomeAdapter(
                     if (keyword.isEmpty()) it.content else StringUtil.highlightKeyword(
                         context,
                         it.content,
-                        keyword,
-                        R.color.color_blue
+                        if (it.similar.isEmpty()) keyword else it.similar,
+                        if (it.similar.isEmpty()) R.color.color_blue else R.color.color_yellow,
+                        isBold = true,
+                        isUnderLine = true
                     )
             }
         }
