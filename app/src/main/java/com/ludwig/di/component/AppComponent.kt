@@ -19,6 +19,7 @@ import javax.inject.Singleton
         ActivityBindingModule::class,
         AppModule::class,
         NetworkModule::class,
+        DatabaseModule::class,
         ViewModelModule::class,
         RepositoryModule::class
     ]

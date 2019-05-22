@@ -1,5 +1,7 @@
 package com.ludwig.di.module
 
+import com.ludwig.data.local.LocalDataSource
+import com.ludwig.data.local.LocalDataSourceImpl
 import com.ludwig.data.remote.RemoteDataSource
 import com.ludwig.data.remote.RemoteDataSourceImpl
 import com.ludwig.data.repository.LudwigRepository
@@ -15,9 +17,9 @@ import javax.inject.Singleton
 @Module
 abstract class RepositoryModule {
 
-//    @Singleton
-//    @Binds
-//    abstract fun bindLocalDataSource(localDataSource: ConfigLocalDataSource): ConfigRepository
+    @Singleton
+    @Binds
+    abstract fun bindLocalDataSource(localDataSource: LocalDataSourceImpl): LocalDataSource
 
     @Singleton
     @Binds

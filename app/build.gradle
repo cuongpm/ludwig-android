@@ -123,12 +123,12 @@ task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
         html.enabled = true
     }
 
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*',
-                      '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*',
-                      '**/Lambda$*.class', '**/Lambda.class', '**/*Lambda.class',
-                      '**/*Lambda*.class', '**/*Builder.*', '**/*_Injector.class',
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*',
+                      '**/*Test*.*', 'android/**/*.*', '**/Lambda$*.class', '**/Lambda.class',
+                      '**/*Lambda.class', '**/*Lambda*.class', '**/*Builder.*', '**/*_Injector.class',
                       '**/*_Injector*.*', '**/*_*Factory*.*', '**/*Component*.*', '**/*Module*.*',
-                      '**/util/scheduler/*.*', '**/LudwigApplication.*', '**/ViewModelFactory.*']
+                      '**/util/scheduler/*.*', '**/util/fragment/*.*', '**/LudwigApplication.*',
+                      '**/ViewModelFactory.*', '**/Memory.*', '**/ActivityUtil.*', '**/AppDatabase.*']
 
     def javaClasses = fileTree(dir: "$project.buildDir/intermediates/javac/debug", excludes: fileFilter)
     def kotlinClasses = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
